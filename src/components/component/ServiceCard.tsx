@@ -26,6 +26,7 @@ const Back = styled.div`
   position: absolute;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  color: white;
   transition: transform 0.6s;
   z-index: 1;
 `;

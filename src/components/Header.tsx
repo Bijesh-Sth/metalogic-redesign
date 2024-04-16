@@ -68,7 +68,7 @@ const Header: React.FC = () => {
           <div className="relative">
             <MenuButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
             {isMenuOpen && (
-              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 z-50">
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-95 z-50">
                 <div className="absolute top-0 right-0 p-4">
                   <button
                     onClick={() => setIsMenuOpen(false)}

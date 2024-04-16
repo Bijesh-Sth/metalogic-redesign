@@ -7,6 +7,7 @@ import TextSection from "../components/home/TextComponent";
 import WhyMetalogic from "../components/home/WhyMetalogic";
 import ExploreProducts from "../components/home/ExploreProducts";
 import OurServices from "../components/home/OurServices";
+import OdometerComponent from "../components/component/OdometerComponent";
 
 // Global styles to hide default scrollbar and make it thinner
 const GlobalStyle = createGlobalStyle`
@@ -87,7 +88,10 @@ const Container = styled.div`
       width: 100%;
       background: white;
       height: auto;
-      padding: 10rem;
+      padding: 6rem;
+      @media screen and (max-width: 768px) {
+        padding: 4rem;
+      }
     }
   }
 
@@ -151,6 +155,23 @@ const Container = styled.div`
     .text p {
       font-size: 0.9rem;
     }
+  }
+`;
+const OdometerWrapper = styled.div`
+position: absolute;
+  bottom: -75px;
+  width: 70%;
+  left: 50%;
+  background: white;
+  border: 1px black opacity(0.5);
+  transform: translateX(-50%);
+  z-index: 200; /* Ensure the odometer overlaps other content */
+  border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    bottom: -50px; /* Adjust bottom position for smaller screens */
+    padding: 1rem;
   }
 `;
 
@@ -218,7 +239,11 @@ const Home: React.FC = () => {
           <OurServices/>
           </div>
         </div>
+        <OdometerWrapper>
+          <OdometerComponent />
+        </OdometerWrapper>
         
+     
       </Container>
       <FooterWrapper>
         <Footer />

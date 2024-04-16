@@ -7,11 +7,13 @@ const ExploreProducts: React.FC = () => {
   return (
     <div className="container py-20">
       <div className="flex flex-col items-center justify-center">
-        <div className="lg:mx-auto lg:w-[80%]">
+        <div className="lg:mx-auto lg:w-3/4">
           <div style={{ opacity: 1, transform: "none" }}>
-            <h2 className="z-50 pb-12 text-4xl font-bold md:w-[50%] md:pb-24 md:text-5xl">Explore Our Products</h2>
+            <h2 className="z-50 pb-12 text-4xl font-bold md:w-1/2 md:pb-24 md:text-5xl">Explore Our Products</h2>
           </div>
-          <div className={`w-full md:mx-auto md:w-full ${isSmallScreen ? 'items-center' : 'items-start'} gap-4`}>
+          <div className={`w-full md:mx-auto md:w-full flex justify-center items-center gap-4
+          ${isSmallScreen ? "flex-col" : "flex-row"}
+          `}>
             {/* Render cards */}
             <Card
               title="Banshwali"

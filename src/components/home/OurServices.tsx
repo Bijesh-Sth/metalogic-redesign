@@ -7,27 +7,32 @@ const FlexContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 10rem; 
-  padding: 0 16px;
+  padding: 0 8px;
+  @media (max-width: 1024px) {
+    padding: 0 2px;
+  }
 `;
 
 const ServiceCardWrapper = styled.div`
-  flex: 1 1 25%;
-  max-width: calc(25% - 16px);
+flex: 1 1 25%;
+max-width: calc(25% - 16px);
+text-align: center; /* Center align the cards */
 
-  @media (max-width: 1024px) {
-    flex: 1 1 33.33%;
-    max-width: calc(33.33% - 16px);
-  }
+@media (max-width: 1024px) {
+  flex: 1 1 33.33%;
+  max-width: calc(33.33% - 16px);
+}
 
-  @media (max-width: 768px) {
-    flex: 1 1 50%;
-    max-width: calc(50% - 16px);
-  }
+@media (max-width: 768px) {
+  flex: 1 1 50%;
+  max-width: calc(50% - 16px);
+  
+}
 
-  @media (max-width: 480px) {
-    flex: 1 1 100%;
-    max-width: calc(100% - 16px);
-  }
+@media (max-width: 480px) {
+  flex: 1 1 100%;
+  max-width: calc(100% - 16px);
+}
 `;
 
 const OurServices: React.FC = () => {
