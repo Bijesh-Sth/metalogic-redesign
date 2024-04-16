@@ -33,6 +33,24 @@ const ServiceCardWrapper = styled.div`
 const OurServices: React.FC = () => {
   return (
     <div className="order-2">
+        <div className="flex flex-col gap-6 px-4 md:px-8 lg:order-2 py-3">
+      <div className="opacity-1 transform-none">
+        <span className="font-semibold">Our Services</span>
+      </div>
+      <div className="opacity-1 transform-none">
+        <h5 className="text-5xl font-bold">Empowering <br /> Your Vision</h5>
+      </div>
+      <div className="opacity-1 transform-none">
+        <p>Our range of offerings is carefully curated to cater to your diverse needs, ensuring that your digital journey is seamless, captivating, and results-driven.</p>
+      </div>
+      <a aria-label="services that metalogic software provides" className="flex w-fit gap-2 rounded-lg border border-secondary-300 px-3 py-2 text-secondary-300 transition-all duration-500 hover:bg-secondary-300 hover:text-white" href="/services">
+        Learn More
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
       <FlexContainer>
         <ServiceCardWrapper>
       <ServiceCard

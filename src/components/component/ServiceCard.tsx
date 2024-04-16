@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+interface ServiceCardProps {
+    title: string;
+    description: string;
+    icon: { name: string; bgColor: string };
+    gradientColorFrom: string;
+    gradientColorTo: string;
+    backDescription: string;
+    linkText: string;
+    link: string;
+  }
+
 const Front = styled.div`
   width: 100%;
   height: 100%;
@@ -37,8 +48,17 @@ const CardWrapper = styled.div`
   }
 `;
 
-const ServiceCard = ({ title, description, icon, gradientColorFrom, gradientColorTo, backDescription, linkText, link }) => {
-  return (
+const ServiceCard: React.FC<ServiceCardProps> = ({
+    title,
+    description,
+    icon,
+    gradientColorFrom,
+    gradientColorTo,
+    backDescription,
+    linkText,
+    link,
+  }: ServiceCardProps) => {
+    return (
     <CardWrapper>
       <Front style={{ background: `linear-gradient(to right, ${gradientColorFrom}, ${gradientColorTo})` }}>
         <div className="flex flex-col items-center justify-center gap-4 rounded-xl py-4 text-center" style={{ height: "100%" }}>
