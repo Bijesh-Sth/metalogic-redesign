@@ -8,6 +8,7 @@ import WhyMetalogic from "../components/home/WhyMetalogic";
 import ExploreProducts from "../components/home/ExploreProducts";
 import OurServices from "../components/home/OurServices";
 import OdometerComponent from "../components/component/OdometerComponent";
+import InfoPopup from "../components/InfoPopup";
 
 // Global styles to hide default scrollbar and make it thinner
 const GlobalStyle = createGlobalStyle`
@@ -174,6 +175,17 @@ position: absolute;
     padding: 1rem;
   }
 `;
+const PopupButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+`;
 
 const FooterWrapper = styled.div`
   width: 100%;
@@ -186,6 +198,7 @@ const Home: React.FC = () => {
   const [isParticlesLoaded, setIsParticlesLoaded] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     // Simulate loading time
@@ -239,6 +252,8 @@ const Home: React.FC = () => {
           <OurServices/>
           </div>
         </div>
+        <PopupButton onClick={() => setIsPopupOpen(true)}>Open Popup</PopupButton>
+         {isPopupOpen && <InfoPopup onClose={() => setIsPopupOpen(false)} />}
         <OdometerWrapper>
           <OdometerComponent />
         </OdometerWrapper>
