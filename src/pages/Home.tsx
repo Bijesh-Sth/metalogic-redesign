@@ -130,18 +130,10 @@ const Home: React.FC = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
-    let lastScrollTop = 0;
-    let timeout: NodeJS.Timeout;
-
     const handleScroll = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const currentScrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        setIsHeaderVisible(currentScrollTop <= lastScrollTop);
-        lastScrollTop = currentScrollTop;
-      }, 100);
+      setIsHeaderVisible(window.scrollY < 100);
     };
+    
 
     window.addEventListener("scroll", handleScroll);
 

@@ -25,13 +25,11 @@ const ParticlesComponent: React.FC<{ id: string }> = (props) => {
       fullScreen: {
         enable: true,
         zIndex: -10,
-
       },
-      style:{
+      style: {
         maxWidth: "100%",
         maxHeight: "100vh",
       },
-     
       fpsLimit: 120,
       interactivity: {
         events: {
@@ -69,7 +67,7 @@ const ParticlesComponent: React.FC<{ id: string }> = (props) => {
           direction: "none" as const,
           enable: true,
           outModes: {
-            default: "bounce",
+            default: "bounce" as const,
           },
           random: true,
           speed: 1,
@@ -97,7 +95,9 @@ const ParticlesComponent: React.FC<{ id: string }> = (props) => {
   );
 
   return (
-    <Particles id={props.id} init={particlesLoaded} options={options} />
+    <div style={{ display: particlesLoaded ? "block" : "none" }}>
+      <Particles id={props.id} options={options} />
+    </div>
   );
 };
 
