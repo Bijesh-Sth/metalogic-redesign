@@ -3,8 +3,10 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ParticlesComponent from "../components/animations/ParticlesComponent";
-
-import TextSection from "../components/home/TextComponent"; 
+import TextSection from "../components/home/TextComponent";
+import WhyMetalogic from "../components/home/WhyMetalogic";
+import ExploreProducts from "../components/home/ExploreProducts";
+import OurServices from "../components/home/OurServices";
 
 // Global styles to hide default scrollbar and make it thinner
 const GlobalStyle = createGlobalStyle`
@@ -48,7 +50,7 @@ const Container = styled.div`
 
   .first {
     height: 100vh;
-    background: red;
+    background: #1e2f97;
     width: 100%;
     position: relative;
     z-index: 0;
@@ -58,11 +60,35 @@ const Container = styled.div`
   }
 
   .second {
-    height: 100vh;
-    background: blue;
+    height: auto;
+    background: rgb(0 28 72);
     width: 100%;
     position: relative;
     z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+    .why{
+      background: #1e2f97;
+      border-radius: 20px;
+      margin: 2rem;
+    }
+    .explore{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: white;
+      gap: 5rem;
+      height: auto;
+    }
+    .ourservice{
+      width: 100%;
+      background: white;
+      height: auto;
+      padding: 10rem;
+    }
   }
 
   .text {
@@ -116,7 +142,16 @@ const Container = styled.div`
     background-color: rgb(229 59 58);
     color: #e5e7eb;
   }
- 
+
+  @media screen and (max-width: 768px) {
+    .text h2 {
+      font-size: 2.5rem;
+    }
+
+    .text p {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 const FooterWrapper = styled.div`
@@ -127,20 +162,36 @@ const FooterWrapper = styled.div`
 `;
 
 const Home: React.FC = () => {
+  const [isParticlesLoaded, setIsParticlesLoaded] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   useEffect(() => {
+    // Simulate loading time
+    const timeout = setTimeout(() => {
+      setIsParticlesLoaded(true);
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
-      setIsHeaderVisible(window.scrollY < 100);
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsHeaderVisible(currentScrollTop < lastScrollTop);
+      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
     };
-    
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollTop]);
+
+  if (!isParticlesLoaded) {
+    return <div>Loading particles...</div>;
+  }
 
   return (
     <div>
@@ -150,11 +201,23 @@ const Home: React.FC = () => {
       <Container>
         <div className="first">
           <ParticlesComponent id={"animate"} />
-          <TextSection /> {/* Use the new component */}
+          <TextSection />
         </div>
-        <div className="second"></div>
-        <div className="first"></div>
-        <div className="second"></div>
+        <div className="second flex items-center justify-center">
+          <div className="h-1/2 w-2/3 p-4 why" >
+          <WhyMetalogic />
+          </div>
+        </div>
+        <div className="second">
+          <div className="explore">
+          <ExploreProducts/>
+          </div>
+        </div>
+        <div className="second">
+          <div className="ourservice">
+          <OurServices/>
+          </div>
+        </div>
         
       </Container>
       <FooterWrapper>
