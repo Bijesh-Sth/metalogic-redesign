@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { Container, ISourceOptions} from "@tsparticles/engine";
+import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
-const ParticlesComponent = () => {
+const ParticlesComponent: React.FC<{ id: string }> = (props) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -14,79 +13,82 @@ const ParticlesComponent = () => {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container) => {
-    console.log(container);
-  };
+  const particlesLoaded = useMemo(() => init, [init]);
 
-  const options: ISourceOptions = useMemo(
+  const options = useMemo(
     () => ({
       background: {
         color: {
-          value: "#0d47a1",
+          value: "#1E2F97",
         },
       },
+      fullScreen: {
+        enable: true,
+        zIndex: -10,
+
+      },
+      style:{
+        maxWidth: "100%",
+        maxHeight: "100vh",
+      },
+     
       fpsLimit: 120,
       interactivity: {
         events: {
           onClick: {
             enable: true,
-            mode: "push",
+            mode: "repulse",
           },
           onHover: {
             enable: true,
-            mode: "repulse",
+            mode: "grab",
           },
         },
         modes: {
           push: {
-            quantity: 4,
-          },
-          repulse: {
             distance: 200,
-            duration: 0.4,
+            duration: 15,
+          },
+          grab: {
+            distance: 150,
           },
         },
       },
       particles: {
         color: {
-          value: "#ffffff",
+          value: "#FFFFFF",
         },
         links: {
-          color: "#ffffff",
+          color: "#FFFFFF",
           distance: 150,
           enable: true,
-          opacity: 0.5,
+          opacity: 0.3,
           width: 1,
         },
         move: {
+          direction: "none" as const,
           enable: true,
-          speed: 6,
-          direction: "none",
-          random: false,
-          straight: false,
           outModes: {
-            default: "out",
+            default: "bounce",
           },
-          attract: {
-            enable: true,
-            rotateX: 600,
-            rotateY: 600,
-          },
+          random: true,
+          speed: 1,
+          straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 80,
+          value: 150,
         },
         opacity: {
-          value: 0.5,
+          value: 1.0,
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 1, max: 5 },
+          value: { min: 1, max: 3 },
         },
       },
       detectRetina: true,
@@ -94,15 +96,9 @@ const ParticlesComponent = () => {
     []
   );
 
-  return init ? (
-    <Particles
-      id="tsparticles"
-      particlesLoaded={particlesLoaded}
-      options={options}
-      style={{ position: "absolute", top: 0, left: 0}}
-      className="absolute top-0 left-0 -z-10 w-max h-screen"
-    />
-  ) : null;
+  return (
+    <Particles id={props.id} init={particlesLoaded} options={options} />
+  );
 };
 
 export default ParticlesComponent;

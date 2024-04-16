@@ -1,8 +1,9 @@
 import React from 'react';
+import Footer from '../components/Footer';
 
 const AboutUs: React.FC = () => {
   return (
-    <div>AboutUs</div>
+    <Footer />
   );
 };
 

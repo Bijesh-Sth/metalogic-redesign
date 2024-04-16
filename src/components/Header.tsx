@@ -42,7 +42,7 @@ const Header: React.FC = () => {
 
   return (
     <nav
-      className="fixed top-0 left-0 py-3 px-6 w-full bg-primary"
+      className="fixed top-0 left-0 py-3 px-6 w-full bg-primary z-50"
       style={{ opacity: 1, transform: "none" }}
     >
       <div className="container mx-auto flex justify-between items-center">
