@@ -12,7 +12,7 @@ const Card = ({
   buttonLink: string;
 }) => {
   return (
-    <div className="relative w-64 h-64 border bg-card text-card-foreground shadow mx-2 my-4 overflow-hidden inline-block rounded-lg">
+    <div className="relative w-72 h-72 border bg-card text-card-foreground shadow mx-2 my-4 overflow-hidden inline-block rounded-lg">
       {/* Image */}
       <div className="relative w-full h-full bg-gradient-to-r from-green-400 to-green-100 rounded-lg cursor-pointer transition-transform duration-300 transform hover:scale-105 p-4">
         <div className="relative overflow-hidden w-full h-full">
