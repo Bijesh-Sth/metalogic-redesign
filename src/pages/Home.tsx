@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy,Suspense } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ParticlesComponent from "../components/animations/ParticlesComponent";
 import TextSection from "../components/home/TextComponent";
 import WhyMetalogic from "../components/home/WhyMetalogic";
 import ExploreProducts from "../components/home/ExploreProducts";
@@ -193,6 +192,9 @@ const FooterWrapper = styled.div`
   display: flex;
   justify-content: flex-end; /* Align the footer to the bottom */
 `;
+// Lazy load the ParticlesComponent
+const ParticlesComponent = lazy(() => import("../components/animations/ParticlesComponent"));
+
 
 const Home: React.FC = () => {
   const [isParticlesLoaded, setIsParticlesLoaded] = useState(false);
@@ -234,7 +236,9 @@ const Home: React.FC = () => {
 
       <Container>
         <div className="first">
-          <ParticlesComponent id={"animate"} />
+        <Suspense fallback={<TextSection/>}>
+            <ParticlesComponent id={"animate"} />
+          </Suspense>
           <TextSection />
         </div>
         <div className="second flex items-center justify-center">
